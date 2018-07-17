@@ -1,4 +1,4 @@
-// inserts element at the end of the list and traverses
+// inserts an element at given position and then traverses
 #include <iostream>
 
 using namespace std;
@@ -9,16 +9,7 @@ struct Node
   struct Node* next;
 };
 
-void traversal(struct Node* n)
-{
-  while(n != NULL)
-  {
-    cout<<(n->data)<<'\n';
-    n = n->next;
-  }
-}
-
-void insert(struct Node** head_ref, int key)
+void insert(struct Node** head_ref, int key, int pos)
 {
   struct Node* new_node = NULL;
   new_node = (struct Node*)malloc(sizeof(struct Node));
@@ -27,12 +18,22 @@ void insert(struct Node** head_ref, int key)
 
   struct Node* nu = *head_ref;
 
-  while((nu->next) != NULL)
+  for(int i = 0; i < pos-1; i++)
   {
     nu = nu->next;
   }
 
+  new_node->next = nu->next;
   nu->next = new_node;
+}
+
+void traversal(struct Node* n)
+{
+  while(n !=  NULL)
+  {
+    cout<<(n->data)<<'\n';
+    n = n->next;
+  }
 }
 
 int main(void)
@@ -40,20 +41,28 @@ int main(void)
   struct Node* head = NULL;
   struct Node* second = NULL;
   struct Node* third = NULL;
+  struct Node* fourth = NULL;
+  struct Node* fifth = NULL;
 
   head = (struct Node*)malloc(sizeof(struct Node));
   second = (struct Node*)malloc(sizeof(struct Node));
   third = (struct Node*)malloc(sizeof(struct Node));
+  fourth = (struct Node*)malloc(sizeof(struct Node));
+  fifth = (struct Node*)malloc(sizeof(struct Node));
 
   head->data = 1;
   second->data = 2;
   third->data = 3;
+  fourth->data = 4;
+  fifth->data = 5;
 
   head->next = second;
   second->next = third;
-  third->next = NULL;
+  third->next = fourth;
+  fourth->next = fifth;
+  fifth->next = NULL;
 
-  insert(&head, 4);
+  insert(&head, 10, 2);
   traversal(head);
 
   return 0;
