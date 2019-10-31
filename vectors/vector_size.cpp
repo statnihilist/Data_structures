@@ -1,4 +1,4 @@
-// program to illustrate various size functions in vectors
+// program to illustrate various size functions in vectors in cpp
 #include <iostream>
 #include <vector>
 
